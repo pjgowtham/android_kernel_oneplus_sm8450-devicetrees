@@ -11,16 +11,32 @@ dtbo-$(CONFIG_ARCH_NEO) += display/neo-sde.dtbo \
 endif
 
 ifneq ($(CONFIG_ARCH_QTI_VM), y)
-dtbo-$(CONFIG_ARCH_WAIPIO) += display/waipio-sde.dtbo \
-		display/waipio-sde-display-mtp-overlay.dtbo \
-		display/waipio-sde-display-cphy-mtp-overlay.dtbo \
-		display/waipio-sde-display-mtp-68disp-overlay.dtbo \
-		display/waipio-sde-display-cdp-overlay.dtbo \
-		display/waipio-sde-display-qrd-overlay.dtbo \
-		display/waipio-sde-display-hdk-overlay.dtbo \
-		display/waipio-sde-display-waipio-lemur-cdp-overlay.dtbo \
-		display/waipio-sde-display-waipio-lemur-mtp-overlay.dtbo \
-		display/waipio-sde-display-rumi-overlay.dtbo
+dtbo-y += display/waipio-sde.dtbo \
+#		display/waipio-sde-display-mtp-overlay.dtbo \
+#		display/waipio-sde-display-cphy-mtp-overlay.dtbo \
+#		display/waipio-sde-display-mtp-68disp-overlay.dtbo \
+#		display/waipio-sde-display-cdp-overlay.dtbo \
+#		display/waipio-sde-display-qrd-overlay.dtbo \
+#		display/waipio-sde-display-hdk-overlay.dtbo \
+#		display/waipio-sde-display-waipio-lemur-cdp-overlay.dtbo \
+#		display/waipio-sde-display-waipio-lemur-mtp-overlay.dtbo \
+#		display/waipio-sde-display-rumi-overlay.dtbo
+
+#PLUS_DTS_OVERLAY start
+dtbo-y += oplus/wly-20846-display-waipio-overlay.dtbo
+dtbo-y += oplus/swan-22001-display-cape-overlay.dtbo
+dtbo-y += oplus/mt-20845-display-waipio-overlay.dtbo
+dtbo-y += oplus/jnc-20865-display-waipio-overlay.dtbo
+dtbo-y += oplus/baize-21001-display-waipio-overlay.dtbo
+dtbo-y += oplus/ferrari-21631-display-waipio-overlay.dtbo
+dtbo-y += oplus/kunpeng-21009-display-waipio-overlay.dtbo
+dtbo-y += oplus/jennie-21605-display-waipio-overlay.dtbo
+dtbo-y += oplus/udon-22803-display-cape-overlay.dtbo
+dtbo-y += oplus/ovaltine-21841-display-cape-overlay.dtbo
+dtbo-y += oplus/senna-22623-display-cape-overlay.dtbo
+dtbo-y += oplus/senna-22624-display-cape-overlay.dtbo
+dtbo-y += oplus/senna-22625-display-cape-overlay.dtbo
+#PLUS_DTS_OVERLAY end
 else
 dtbo-$(CONFIG_ARCH_WAIPIO) += display/trustedvm-waipio-sde-display-mtp-overlay.dtbo \
 		display/trustedvm-waipio-sde-display-cdp-overlay.dtbo \

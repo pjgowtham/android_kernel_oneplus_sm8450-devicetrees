@@ -8,13 +8,13 @@
 		regulator-min-microvolt = <5500000>;
 		regulator-max-microvolt = <5500000>;
 		regulator-enable-ramp-delay = <233>;
-		gpio = <&tlmm 186 0>;
+		//gpio = <&tlmm 186 0>;
 		enable-active-high;
 		regulator-boot-on;
 		proxy-supply = <&display_panel_avdd>;
 		qcom,proxy-consumer-enable;
 		pinctrl-names = "default";
-		pinctrl-0 = <&display_panel_avdd_default>;
+		//pinctrl-0 = <&display_panel_avdd_default>;
 	};
 
 	sde_wb: qcom,wb-display@0 {
@@ -59,6 +59,9 @@
 	clock-names = "pll_byte_clk0", "pll_dsi_clk0",
 			"pll_byte_clk1", "pll_dsi_clk1",
 			"mdp_core_clk";
+//#ifdef OPLUS_FEATURE_DISPLAY
+	vci_sec-supply = <&L3C>;
+//#endif /* OPLUS_FEATURE_DISPLAY */
 
 	vddio-supply = <&L12C>;
 	vci-supply = <&L13C>;
@@ -88,6 +91,10 @@
 	clock-names = "pll_byte_clk0", "pll_dsi_clk0",
 			"pll_byte_clk1", "pll_dsi_clk1",
 			"mdp_core_clk";
+
+//#ifdef OPLUS_FEATURE_DISPLAY
+	vci_sec-supply = <&L3C>;
+//#endif /* OPLUS_FEATURE_DISPLAY */
 
 	vddio-supply = <&L12C>;
 	vci-supply = <&L13C>;
