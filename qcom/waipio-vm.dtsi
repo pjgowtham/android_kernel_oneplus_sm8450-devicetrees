@@ -100,9 +100,10 @@
 				0x0 0xc42d000 0x0 0xc42d000 0x0 0x4000 0x1
 				0x0 0xc440000 0x0 0xc440000 0x0 0x80000 0x1
 				0x0 0xc4c0000 0x0 0xc4c0000 0x0 0x10000 0x1
-				0x0 0xae8f000 0x0 0xae8f000 0x0 0x1000 0x0>;
+				0x0 0xae8f000 0x0 0xae8f000 0x0 0x1000 0x0
+				0x0 0x828000 0x0 0x828000 0x0 0x4000 0x0>;
 
-		gic-irq-ranges = <283 283>; /* PVM->SVM IRQ transfer */
+		gic-irq-ranges = <283 283 626 626>; /* PVM->SVM IRQ transfer */
 
 		memory {
 			#address-cells = <0x2>;
@@ -279,7 +280,7 @@
 		interrupt-controller;
 		#interrupt-cells = <2>;
 		/* Valid pins */
-		gpios = /bits/ 16 <64 65 66 67 0 4 86 87 16 17 18 19 20 21>;
+		gpios = /bits/ 16 <64 65 66 67 72 73 74 75 0 3 4 6 86 87 16 17 18 19 20 21 22 23>;
 	};
 
 	psci {
@@ -289,7 +290,7 @@
 
 	tlmm-vm-mem-access {
 		compatible = "qcom,tlmm-vm-mem-access";
-		tlmm-vm-gpio-list = <365 366 367 368 301 305 387 388 317 318 319 320 321 322>;
+		tlmm-vm-gpio-list = <365 366 367 368 373 374 375 376 301 304 305 307 387 388 317 318 319 320 321 322 323 324>;
 	};
 
 	vgic: interrupt-controller@17100000 {
@@ -359,6 +360,45 @@
 		status = "ok";
 	};
 
+	/* QUPv3_2 wrapper instance */
+	qupv3_2: qcom,qupv3_2_geni_se@8c0000 {
+		compatible = "qcom,qupv3-geni-se";
+		reg = <0x8c0000 0x2000>;
+		iommus = <&apps_smmu 0x498 0x0>;
+		qcom,iommu-group = <&qup_iommu_group>;
+		dma-coherent;
+		status = "ok";
+	};
+
+	/* GPI Instance */
+	gpi_dma2: qcom,gpi-dma@800000 {
+		compatible = "qcom,gpi-dma";
+		#dma-cells = <5>;
+		reg = <0x800000 0x60000>;
+		reg-names = "gpi-top";
+		iommus = <&apps_smmu 0x498 0x0>;
+		qcom,iommu-group = <&qup_iommu_group>;
+		dma-coherent;
+		interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
+			<GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>;
+		qcom,max-num-gpii = <12>;
+		qcom,gpii-mask = <0x40>;
+		qcom,ev-factor = <2>;
+		qcom,gpi-ee-offset = <0x10000>;
+		qcom,le-vm;
+		status = "ok";
+	};
+
 	/* I2C SE */
 	qupv3_se4_i2c: i2c@990000 {
 		compatible = "qcom,i2c-geni";
@@ -384,6 +424,21 @@
 		dma-names = "tx", "rx";
 		spi-max-frequency = <50000000>;
 		qcom,wrapper-core = <&qupv3_0>;
+		qcom,le-vm;
+		status = "disabled";
+	};
+
+	qupv3_se19_spi: spi@890000 {
+		compatible = "qcom,spi-geni";
+		reg = <0x890000 0x4000>;
+		reg-names = "se_phys";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		dmas = <&gpi_dma2 0 4 1 64 0>,
+		<&gpi_dma2 1 4 1 64 0>;
+		dma-names = "tx", "rx";
+		spi-max-frequency = <50000000>;
+		qcom,wrapper-core = <&qupv3_2>;
 		qcom,le-vm;
 		status = "disabled";
 	};

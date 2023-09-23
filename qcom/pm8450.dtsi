@@ -29,6 +29,18 @@
 			#interrupt-cells = <2>;
 		};
 	};
+	qcom,pm8010i@8 {
+			compatible ="qcom,spmi-pmic";
+			reg = <0x8 SPMI_USID>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+	};
+	qcom,pm8010j@9 {
+			compatible = "qcom,spmi-pmic";
+			reg = <0x9 SPMI_USID>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+	};
 };
 
 &thermal_zones {

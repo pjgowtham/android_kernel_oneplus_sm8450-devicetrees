@@ -34,7 +34,7 @@
 };
 
 &sdhc_2 {
-	status = "ok";
+	status = "disabled";
 	vdd-supply = <&pm8350c_l9>;
 	qcom,vdd-voltage-level = <2960000 2960000>;
 	qcom,vdd-current-level = <0 800000>;
@@ -46,8 +46,11 @@
 	pinctrl-names = "default", "sleep";
 	pinctrl-0 = <&sdc2_on>;
 	pinctrl-1 = <&sdc2_off>;
-
-	cd-gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
+//#ifdef OPLUS_FEATURE_CHG_BASIC /* sjc Modify for temp */
+	//cd-gpios = <&tlmm 92 GPIO_ACTIVE_LOW>;
+//#else
+	cd-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
+//#endif
 };
 
 &soc {
@@ -72,6 +75,14 @@
 
 &pm8350b_haptics {
 	status = "ok";
+//#ifdef OPLUS_FEATURE_CHG_BASIC
+	qcom,vmax-mv = <1900>;
+	qcom,cl-vmax-mv = <1680>;
+	qcom,lra-period-us = <5882>;
+	qcom,fifo-vmax-mv = <8900>;
+	qcom,old-steady-vmax-mv = <9700>;
+	qcom,cal-data-restore;
+//#endif
 };
 
 &pm8350c_switch0 {
@@ -100,7 +111,7 @@
 
 &qupv3_se9_i2c {
 	status = "ok";
-	qcom,clk-freq-out = <1000000>;
+	qcom,clk-freq-out = <400000>;
 	#address-cells = <1>;
 	#size-cells = <0>;
 	nq@28 {
@@ -128,7 +139,7 @@
 
 	status = "ok";
 	qcom,i2c-touch-active = "focaltech,fts_ts";
-
+ 
 	focaltech@38 {
 		compatible = "focaltech,fts_ts";
 		reg = <0x38>;
@@ -141,6 +152,7 @@
 		focaltech,touch-type = "primary";
 
 		vdd-supply = <&L3C>;
+		vcc_i2c-supply = <&L8C>;
 
 		pinctrl-names = "pmx_ts_active", "pmx_ts_suspend","pmx_ts_release";
 		pinctrl-0 = <&ts_active>;

@@ -29,6 +29,7 @@
 			qcom,curr-link-list = <6>;
 			qcom,data-sink = "sram";
 			qcom,link-list = <DCC_READ 0x1780005c 1 0>,
+				<DCC_READ 0x17d80100 256 0>,
 				<DCC_READ 0x1781005c 1 0>,
 				<DCC_READ 0x1782005c 1 0>,
 				<DCC_READ 0x1783005c 1 0>,

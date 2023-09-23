@@ -20,7 +20,7 @@
 	#size-cells = <2>;
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 loglevel=6 kpti=0 log_buf_len=256K kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat service_locator.enable=1 msm_rtb.filter=0x237 allow_mismatched_32bit_el0 cpufreq.default_governor=performance pelt=8 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 irqaffinity=0-3 ftrace_dump_on_oops pstore.compress=none fsa4480_i2c.async_probe=1 can.stats_timer=0 slub_debug=- allow_file_spec_access";
+		bootargs = "console=ttyMSM0,115200n8 loglevel=6 kpti=0 log_buf_len=2M kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat service_locator.enable=1 msm_rtb.filter=0x237 allow_mismatched_32bit_el0 cpufreq.default_governor=performance pelt=8 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 irqaffinity=0-3 ftrace_dump_on_oops pstore.compress=none fsa4480_i2c.async_probe=1 can.stats_timer=0 slub_debug=- allow_file_spec_access";
 		stdout-path = "/soc/qcom,qup_uart@99c000:115200n8";
 	};
 
@@ -29,15 +29,6 @@
 
 	reserved_memory: reserved-memory { };
 
-	mem-offline {
-		compatible = "qcom,mem-offline";
-		offline-sizes = <0x1 0x40000000 0x0 0x40000000>,
-				<0x1 0xc0000000 0x0 0x80000000>,
-				<0x2 0xc0000000 0x1 0x40000000>;
-		granule = <512>;
-		mboxes = <&qmp_aop 0>;
-	};
-
 	aliases: aliases {
 		serial0 = &qupv3_se7_2uart;
 		hsuart0 = &qupv3_se20_4uart;
@@ -45,6 +36,9 @@
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
 		pci-domain0 = &pcie0; /* PCIe0 domain */
 		pci-domain1 = &pcie1; /* PCIe1 domain */
+		/* #ifdef OPLUS_ARCH_EXTENDS */
+		i2c4 = &qupv3_se13_i2c;
+		/* OPLUS_ARCH_EXTENDS */
 	};
 
 	sram: sram@17D09400 {
@@ -406,7 +400,9 @@
 
 	cdsp_secure_heap: cdsp_secure_heap_region@80c00000 {
 		no-map;
-		reg = <0x0 0x80c00000 0x0 0x4600000>;
+	// #ifdef OPLUS_FEATURE_SECURITY_COMMON
+		reg = <0x0 0x80c00000 0x0 0x100000>;
+	// #endif /* OPLUS_FEATURE_SECURITY_COMMON */
 	};
 
 	video_mem: video_region@85700000 {
@@ -490,14 +486,9 @@
 
 	/* Linux kernel image is loaded at 0xa0000000 */
 
-	oem_vm_mem: oem_vm_region@bb000000 {
-		no-map;
-		reg = <0x0 0xbb000000 0x0 0x5000000>;
-	};
-
 	qheebsp_reserved_mem: qheebsp_reserved_region@e0000000 {
 		no-map;
-		reg = <0x0 0xe0000000 0x0 0x600000>;
+		reg = <0x0 0xe0000000 0x0 0>;
 	};
 
 	cpusys_vm_mem: cpusys_vm_region@e0600000 {
@@ -599,7 +590,7 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		alignment = <0x0 0x400000>;
-		size = <0x0 0x1000000>;
+		size = <0x0 0x2000000>;
 	};
 
 	cnss_wlan_mem: cnss_wlan_region {
@@ -641,15 +632,16 @@
 		alignment = <0x0 0x400000>;
 		size = <0x0 0x800000>;
 	};
-
+/* #ifdef OPLUS_BUG_STABILITY */
 	ramoops_mem: ramoops_region {
 		compatible = "ramoops";
 		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
-		size = <0x0 0x200000>;
+		size = <0x0 0x240000>;
 		pmsg-size = <0x200000>;
+		console-size = <0x40000>;
 		mem-type = <2>;
 	};
-
+/* #endif OPLUS_BUG_STABILITY */
 	/* global autoconfigured region for contiguous allocations */
 	system_cma: linux,cma {
 		compatible = "shared-dma-pool";
@@ -718,6 +710,7 @@
 			domain-idle-states = <&CLUSTER_PWR_DN &APSS_OFF>;
 		};
 	};
+
 
 	slimbam: bamdma@3304000 {
 		compatible = "qcom,bam-v1.7.0";
@@ -1218,7 +1211,7 @@
 				qcom,intents = <0x800  5
 						0x2000 3
 						0x4400 2>;
-
+				/* Qcom case-06236027 add for qrtr wakeup-source */
 				qcom,no-wake-svc = <0x190>;
 			};
 
@@ -2285,7 +2278,7 @@
 		interrupt-names = "hc_irq", "pwr_irq";
 
 		bus-width = <4>;
-		no-sdio;
+                //no-sdio;
 		no-mmc;
 		qcom,restore-after-cx-collapse;
 
@@ -3209,12 +3202,12 @@
 		status = "disabled";
 	};
 
+	//#ifdef OPLUS_FEATURE_FINGERPRINT
 	qcom,qbt_handler {
 		compatible = "qcom,qbt-handler";
-		qcom,ipc-gpio = <&tlmm 40 0>;
-		qcom,finger-detect-gpio = <&tlmm 41 0>;
-		qcom,intr2-gpio = <&tlmm 42 0>;
+		status = "disabled";
 	};
+	//#endif /*OPLUS_FEATURE_FINGERPRINT*/
 
 	wlan: qcom,cnss-qca6490@b0000000 {
 		compatible = "qcom,cnss-qca6490";
@@ -3455,6 +3448,7 @@
 #include "waipio-coresight.dtsi"
 #include "waipio-dma-heaps.dtsi"
 #include "waipio-debug.dtsi"
+#include "waipio-eva.dtsi"
 #include "waipio-pcie.dtsi"
 #include "msm-rdbg.dtsi"
 #include "waipio-gpu.dtsi"
@@ -3496,7 +3490,11 @@
 	nq@64 {
 		compatible = "rtc6226";
 		reg = <0x64>;
-		fmint-gpio = <&tlmm 44 0>;
+//#ifndef OPLUS_FEATURE_CHG_BASIC /* sjc Modify for temp */
+		//fmint-gpio = <&tlmm 44 0>;
+//#else
+		fmint-gpio = <&tlmm 12 0>;
+//#endif
 		vdd-supply = <&L7E>;
 		rtc6226,vdd-supply-voltage = <2800000 2800000>;
 		rtc6226,vdd-load = <15000>;

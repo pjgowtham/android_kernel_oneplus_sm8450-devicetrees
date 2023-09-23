@@ -18,22 +18,13 @@
 	#size-cells = <2>;
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 loglevel=6 kpti=0 log_buf_len=256K kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat msm_rtb.filter=0x237 allow_mismatched_32bit_el0 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops pstore.compress=none cpufreq.default_governor=performance can.stats_timer=0 fsa4480_i2c.async_probe=1 slub_debug=- disable_dma32=on";
+		bootargs = "console=ttyMSM0,115200n8 loglevel=6 kpti=0 log_buf_len=2M kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat msm_rtb.filter=0x237 allow_mismatched_32bit_el0 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops pstore.compress=none cpufreq.default_governor=performance can.stats_timer=0 fsa4480_i2c.async_probe=1 slub_debug=- disable_dma32=on";
 		stdout-path = "/soc/qcom,qup_uart@99c000:115200n8";
 	};
 
 	memory { device_type = "memory"; reg = <0 0 0 0>; };
 
 	ddr-regions { };
-
-	mem-offline {
-		compatible = "qcom,mem-offline";
-		offline-sizes = <0x1 0x40000000 0x0 0x40000000>,
-				<0x1 0xc0000000 0x0 0x80000000>,
-				<0x2 0xc0000000 0x1 0x40000000>;
-		granule = <512>;
-		mboxes = <&qmp_aop 0>;
-	};
 
 	reserved_memory: reserved-memory { };
 
@@ -375,7 +366,7 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		alignment = <0x0 0x400000>;
-		size = <0x0 0x1400000>;
+		size = <0x0 0x4800000>;
 	};
 
 	non_secure_display_memory: non_secure_display_region {
@@ -1463,6 +1454,12 @@
 		};
 	};
 
+	aop-msg-client {
+		compatible = "qcom,debugfs-qmp-client";
+		mboxes = <&qmp_aop 0>;
+		mbox-names = "aop";
+	};
+
 	rimps_log: qcom,rimps_log@17d09c00 {
 		compatible = "qcom,rimps-log";
 		reg = <0x17d09c00 0x200>, <0x17d09e00 0x200>;
@@ -1832,7 +1829,7 @@
 		interrupt-names = "hc_irq", "pwr_irq";
 
 		bus-width = <4>;
-		no-sdio;
+		//no-sdio;
 		no-mmc;
 		qcom,uses_level_shifter;
 		qcom,dll_lock_bist_fail_wa;
@@ -2570,7 +2567,7 @@
 				qcom,intents = <0x800  5
 						0x2000 3
 						0x4400 2>;
-
+				/* Qcom case-06236027 add for qrtr wakeup-source */
 				qcom,no-wake-svc = <0x190>;
 			};
 
@@ -3160,6 +3157,7 @@
 #include "cape-usb.dtsi"
 #include "cape-pcie.dtsi"
 #include "msm-rdbg.dtsi"
+#include "waipio-eva.dtsi"
 #include "ipcc-test.dtsi"
 
 &qupv3_se7_2uart {
