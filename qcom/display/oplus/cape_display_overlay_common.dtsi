@@ -1,5 +1,5 @@
 /* #ifdef OPLUS_ARCH_EXTENDS */
 &sde_dp {
-	qcom,dp-aux-switch = <&fsa4480_new>;
+	//qcom,dp-aux-switch = <&fsa4480_new>;
 };
 /* OPLUS_ARCH_EXTENDS */

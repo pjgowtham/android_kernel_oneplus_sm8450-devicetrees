@@ -87,7 +87,7 @@
 	asoc-codec-names = "msm-stub-codec.1", "lpass-cdc",
 			   "wcd938x_codec", "swr-haptics";
 	qcom,wsa-max-devs = <0>;
-	fsa4480-i2c-handle = <&fsa4480_new>;
+	//fsa4480-i2c-handle = <&fsa4480_new>;
 };
 
 &cdc_tert_mi2s_gpios {
