@@ -1111,9 +1111,19 @@
 		control-camnoc-axi-clk;
 		camnoc-bus-width = <32>;
 		camnoc-axi-clk-bw-margin-perc = <20>;
-		interconnect-names = "cam_ahb";
-		interconnects =<&gem_noc MASTER_APPSS_PROC
-			&config_noc SLAVE_CAMERA_CFG>;
+		cam-icc-path-names = "cam_ahb";
+		interconnect-names = "cam_ahb",
+			"cam_hf_0",
+			"cam_sf_0",
+			"cam_sf_icp";
+		interconnects = <&gem_noc MASTER_APPSS_PROC
+				&config_noc SLAVE_CAMERA_CFG>,
+			<&mmss_noc MASTER_CAMNOC_HF
+				&mc_virt SLAVE_EBI1>,
+			<&mmss_noc MASTER_CAMNOC_SF
+				&mc_virt SLAVE_EBI1>,
+			<&mmss_noc MASTER_CAMNOC_ICP
+				&mc_virt SLAVE_EBI1>;
 		rpmh-bcm-info = <12 0x4 0x800 0 4>;
 		cam-ahb-num-cases = <8>;
 		cam-ahb-bw-KBps =
@@ -1156,10 +1166,7 @@
 					<CAM_CPAS_TRAFFIC_MERGE_SUM>;
 					ib-bw-voting-needed;
 					qcom,axi-port-mnoc {
-						interconnect-names = "cam_hf_0";
-						interconnects =
-						<&mmss_noc MASTER_CAMNOC_HF
-						&mc_virt SLAVE_EBI1>;
+						cam-icc-path-names = "cam_hf_0";
 					};
 				};
 
@@ -1169,10 +1176,7 @@
 					traffic-merge-type =
 					<CAM_CPAS_TRAFFIC_MERGE_SUM>;
 					qcom,axi-port-mnoc {
-						interconnect-names = "cam_sf_0";
-						interconnects =
-						<&mmss_noc MASTER_CAMNOC_SF
-						&mc_virt SLAVE_EBI1>;
+						cam-icc-path-names = "cam_sf_0";
 					};
 				};
 
@@ -1182,11 +1186,8 @@
 					traffic-merge-type =
 					<CAM_CPAS_TRAFFIC_MERGE_SUM>;
 					qcom,axi-port-mnoc {
-						interconnect-names =
+						cam-icc-path-names =
 							"cam_sf_icp";
-						interconnects =
-						<&mmss_noc MASTER_CAMNOC_ICP
-						&mc_virt SLAVE_EBI1>;
 					};
 				};
 			};
