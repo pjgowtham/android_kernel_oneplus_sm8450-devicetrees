@@ -3171,6 +3171,7 @@
 #include "cape-pcie.dtsi"
 #include "msm-rdbg.dtsi"
 #include "ipcc-test.dtsi"
+#include "waipio-walt.dtsi"
 
 #include "audio/waipio-audio.dtsi"
 #include "camera/cape-camera.dtsi"
