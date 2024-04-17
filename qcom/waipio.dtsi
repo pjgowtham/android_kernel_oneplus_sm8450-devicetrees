@@ -3465,6 +3465,7 @@
 #include "waipio-debug.dtsi"
 #include "waipio-pcie.dtsi"
 #include "msm-rdbg.dtsi"
+#include "waipio-walt.dtsi"
 
 #include "audio/waipio-audio.dtsi"
 #include "camera/waipio-camera.dtsi"
