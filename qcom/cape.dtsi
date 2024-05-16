@@ -1915,6 +1915,7 @@
 
 		qcom,ice-use-hwkm;
 
+		qcom,max-cpus = <8>;
 		qcom,prime-mask = <0x70>;
 		qcom,silver-mask = <0x0f>;
 		lanes-per-direction = <2>;
