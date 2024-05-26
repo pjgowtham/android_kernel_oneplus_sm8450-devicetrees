@@ -47,6 +47,26 @@
 
 #include "waipio-sde-display-pinctrl.dtsi"
 
+//#ifdef OPLUS_FEATURE_DISPLAY
+#include "dsi-panel-oplus21631-samsung-1440-3216-dsc-cmd-t0.dtsi"
+#include "dsi-panel-samsung-amb670yf07-1440-3216-dsc-cmd.dtsi"
+#include "dsi-panel-samsung-amb670yf07-1440-3216-dsc-cmd-t0.dtsi"
+#include "dsi-panel-oplus-unicorn-boe-nt37800a-2428-1876-dsc-cmd.dtsi"
+
+&soc {
+	oplus_display_dev: oplus,dsi-display-dev {
+		oplus,dsi-panel-primary = <
+			&dsi_oplus21631_samsung_1440_3216_dsc_cmd_t0
+			&dsi_panel_samsung_amb670yf07_1440_3216_dsc_cmd
+			&dsi_panel_samsung_amb670yf07_1440_3216_dsc_cmd_t0
+			&dsi_oplus_unicorn_boe_nt37800a_2428_1876_cmd
+		>;
+		oplus,dsi-panel-secondary = <>;
+		oplus,dsi-panel-extended = <>;
+	};
+};
+//#endif /* OPLUS_FEATURE_DISPLAY */
+
 &soc {
 	dsi_panel_pwr_supply_sim: dsi_panel_pwr_supply_sim {
 		#address-cells = <1>;
@@ -106,6 +126,88 @@
 			qcom,supply-post-on-sleep = <20>;
 		};
 	};
+
+//#ifdef OPLUS_FEATURE_DISPLAY
+	dsi_panel_oplus_optimization_pwr_supply: dsi_panel_oplus_optimization_pwr_supply {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <200000>;
+			qcom,supply-disable-load = <80>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <2000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "lab";
+			qcom,supply-min-voltage = <4600000>;
+			qcom,supply-max-voltage = <6000000>;
+			qcom,supply-enable-load = <0>;
+			qcom,supply-disable-load = <0>;
+		};
+
+		qcom,panel-supply-entry@3 {
+			reg = <3>;
+			qcom,supply-name = "ibb";
+			qcom,supply-min-voltage = <4600000>;
+			qcom,supply-max-voltage = <6000000>;
+			qcom,supply-enable-load = <0>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+	};
+
+	dsi_panel_oplus_unicorn_pwr_supply: dsi_panel_oplus_unicorn_pwr_supply {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <200000>;
+			qcom,supply-disable-load = <80>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vddr";
+			qcom,supply-min-voltage = <1200000>;
+			qcom,supply-max-voltage = <1200000>;
+			qcom,supply-enable-load = <200000>;
+			qcom,supply-disable-load = <80>;
+			qcom,supply-post-on-sleep = <20>;
+		};
+
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <2000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+	};
+//#endif /* OPLUS_FEATURE_DISPLAY */
+
 
 	dsi_panel_pwr_supply_avdd: dsi_panel_pwr_supply_avdd {
 		#address-cells = <1>;
@@ -231,15 +333,20 @@
 		qcom,dsi-ctrl = <&mdss_dsi0 &mdss_dsi1>;
 		qcom,dsi-phy = <&mdss_dsi_phy0 &mdss_dsi_phy1>;
 
-		pinctrl-names = "panel_active", "panel_suspend";
+		pinctrl-names = "panel_active", "panel_suspend", "te1_active", "te1_suspend";
 		pinctrl-0 = <&sde_dsi_active &sde_te_active>;
 		pinctrl-1 = <&sde_dsi_suspend &sde_te_suspend>;
+		pinctrl-2 = <&sde_te1_active>;
+		pinctrl-3 = <&sde_te1_suspend>;
+
 
 		qcom,platform-te-gpio = <&tlmm 86 0>;
 		qcom,panel-te-source = <0>;
 
 		qcom,mdp = <&mdss_mdp>;
-		qcom,dsi-default-panel = <&dsi_r66451_amoled_cmd>;
+//#ifdef OPLUS_FEATURE_DISPLAY
+		qcom,dsi-default-panel = <&dsi_panel_samsung_amb670yf07_1440_3216_dsc_cmd>;
+//#endif /* OPLUS_FEATURE_DISPLAY */
 		qcom,demura-panel-id = <0x0122e700 0x000000b0>;
 	};
 
