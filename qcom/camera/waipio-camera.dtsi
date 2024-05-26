@@ -929,6 +929,7 @@
 				<&apps_smmu 0x860 0x460>,
 				<&apps_smmu 0xC40 0x460>,
 				<&apps_smmu 0xC60 0x460>;
+			qcom,iommu-faults = "non-fatal";
 			qcom,iommu-dma-addr-pool = <0x100000 0xffe00000>;
 			dma-coherent;
 			cam-smmu-label = "ife", "sfe";
@@ -984,6 +985,7 @@
 				<&apps_smmu 0x2480 0x400>,
 				<&apps_smmu 0x2120 0x420>,
 				<&apps_smmu 0x2520 0x420>;
+			qcom,iommu-faults = "non-fatal";
 			cam-smmu-label = "icp";
 			qcom,iommu-dma-addr-pool = <0x10c00000 0xee300000>;
 			iova-region-discard = <0xe0000000 0x800000>;
