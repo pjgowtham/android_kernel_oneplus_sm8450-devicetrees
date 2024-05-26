@@ -1,0 +1,31 @@
+DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include
+KBUILD_DTC_INCLUDE += $(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include
+
+dtbo-$(CONFIG_ARCH_CAPE) += ../cape-audio.dtbo
+dtbo-$(CONFIG_ARCH_CAPE) += whiteswan-22001-audio-cape-overlay.dtbo \
+                       lvzhou-22015-audio-cape-overlay.dtbo \
+                       jennie-21605-audio-cape-overlay.dtbo \
+                       ovaltine-21841-audio-cape-overlay.dtbo \
+                       senna-22624-audio-cape-overlay.dtbo \
+                       senna-22625-audio-cape-overlay.dtbo \
+                       senna-22623-audio-cape-overlay.dtbo \
+                       udon-22803-audio-cape-overlay.dtbo \
+                       monroe-22091-audio-cape-overlay.dtbo \
+                       daoxiang-23023-audio-cape-overlay.dtbo
+
+dtbo-$(CONFIG_ARCH_DIWALI) += ../diwali-audio.dtbo
+dtbo-$(CONFIG_ARCH_DIWALI) += wuyi-21125-audio-diwali-overlay.dtbo \
+                       wuyi-21125-audio-diwali-overlay-t0.dtbo
+
+dtbo-$(CONFIG_ARCH_WAIPIO) += ../waipio-audio.dtbo
+dtbo-$(CONFIG_ARCH_WAIPIO) += wly-20846-audio-waipio-overlay.dtbo \
+                       mt-20845-audio-waipio-overlay.dtbo \
+                       jnc-20865-audio-waipio-overlay.dtbo \
+                       baize-21001-audio-waipio-overlay.dtbo \
+                       ferrari-21631-audio-waipio-overlay.dtbo \
+                       kunpeng-21009-audio-waipio-overlay.dtbo \
+                       jennie-21605-audio-waipio-overlay.dtbo
+
+always-y    := $(dtb-y) $(dtbo-y)
+subdir-y    := $(dts-dirs)
+clean-files    := *.dtb *.dtbo
