@@ -1,0 +1,23 @@
+dtbo-$(CONFIG_ARCH_CAPE) += ../display/cape-sde.dtbo
+dtbo-$(CONFIG_ARCH_DIWALI) += ../display/diwali-sde.dtbo
+dtbo-$(CONFIG_ARCH_WAIPIO) += ../display/waipio-sde.dtbo
+
+dtbo-y += wly-20846-display-waipio-overlay.dtbo
+dtbo-y += swan-22001-display-cape-overlay.dtbo
+dtbo-y += mt-20845-display-waipio-overlay.dtbo
+dtbo-y += jnc-20865-display-waipio-overlay.dtbo
+dtbo-y += baize-21001-display-waipio-overlay.dtbo
+dtbo-y += ferrari-21631-display-waipio-overlay.dtbo
+dtbo-y += kunpeng-21009-display-waipio-overlay.dtbo
+dtbo-y += jennie-21605-display-waipio-overlay.dtbo
+dtbo-y += udon-22803-display-cape-overlay.dtbo
+dtbo-y += ovaltine-21841-display-cape-overlay.dtbo
+dtbo-y += senna-22623-display-cape-overlay.dtbo
+dtbo-y += senna-22624-display-cape-overlay.dtbo
+dtbo-y += senna-22625-display-cape-overlay.dtbo
+dtbo-y += monroe-22091-display-cape-overlay.dtbo
+dtbo-y += daoxiang-23023-display-cape-overlay.dtbo
+
+always-y	:= $(dtbo-y) $(dtb-y)
+subdir-y	:= $(dts-dirs)
+clean-files	:= *.dtb *.dtbo
