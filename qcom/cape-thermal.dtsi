@@ -389,13 +389,12 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
-
+/* Modify for high temp aging */
+			//reset-mon-cfg {
+			//	temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+			//};
 			cpu4_emerg0: cpu4-emerg0-cfg {
 				temperature = <110000>;
 				hysteresis = <10000>;
@@ -420,13 +419,12 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
-
+/* Modify for high temp aging */
+			//reset-mon-cfg {
+			//	temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+			//};
 			cpu4_emerg1: cpu4-emerg1-cfg {
 				temperature = <110000>;
 				hysteresis = <10000>;
@@ -451,14 +449,14 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
+/* Modify for high temp aging */
+			//  reset-mon-cfg {
+			//  temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+			//};
 
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
-
-			cpu5_emerg0: cpu5-emerg0-cfg {
+           cpu5_emerg0: cpu5-emerg0-cfg {
 				temperature = <110000>;
 				hysteresis = <10000>;
 				type = "passive";
@@ -489,12 +487,13 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
+/* Modify for high temp aging */
+         //reset-mon-cfg {
+			//temperature = <115000>;
+			//hysteresis = <5000>;
+			//type = "passive";
+			//};
 
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
 
 			cpu5_emerg1: cpu5-emerg1-cfg {
 				temperature = <110000>;
@@ -527,12 +526,12 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
+ /* Modify for high temp aging */
+			//reset-mon-cfg {
+			//	temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+			//};
 
 			cpu6_emerg0: cpu6-emerg0-cfg {
 				temperature = <110000>;
@@ -565,20 +564,19 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
+ /* Modify for high temp aging */
+			//reset-mon-cfg {
+			//	temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+ //};
+};
 
 			cpu6_emerg1: cpu6-emerg1-cfg {
 				temperature = <110000>;
 				hysteresis = <10000>;
 				type = "passive";
 			};
-		};
-
 		cooling-maps {
 			cpu15_cdev {
 				trip = <&cpu6_emerg1>;
@@ -603,12 +601,13 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
+ /* Modify for high temp aging */
+			//reset-mon-cfg {
+			//	temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+			//};
 
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
 
 			cpu7_emerg0: cpu7-emerg0-cfg {
 				temperature = <110000>;
@@ -641,12 +640,12 @@
 				hysteresis = <1000>;
 				type = "passive";
 			};
-
-			reset-mon-cfg {
-				temperature = <115000>;
-				hysteresis = <5000>;
-				type = "passive";
-			};
+/* Modify for high temp aging */
+			//reset-mon-cfg {
+			//	temperature = <115000>;
+			//	hysteresis = <5000>;
+			//	type = "passive";
+			//};
 
 			cpu7_emerg1: cpu7-emerg1-cfg {
 				temperature = <110000>;
@@ -1115,6 +1114,7 @@
 					THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 			};
 
+
 			gold_cdev1 {
 				trip = <&ddr_config0>;
 				cooling-device = <&CPU5
@@ -1132,13 +1132,13 @@
 				cooling-device = <&CPU7
 					THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 			};
-
-			ddr_cdev {
-				trip = <&ddr_config0>;
-				cooling-device = <&ddr_cdev 1 1>;
-			};
-		};
-	};
+ /* Modify for high temp aging */
+			//ddr_cdev {
+			//	trip = <&ddr_config0>;
+			//	cooling-device = <&ddr_cdev 1 1>;
+			//};
+};
+};
 
 	mdmss-0 {
 		polling-delay-passive = <0>;

@@ -948,14 +948,17 @@
 	};
 
 	spkr2_2_sd_n {
+		/* GPIO 3 is the display LCD reset pin, which is occupied by audio. */
+		/* Therefore, gpio3 is modified to gpio159. */
+		/* Gpio159 is not used in the 8475T baseline. */
 		spkr2_2_sd_n_sleep: spkr2_2_sd_n_sleep {
 			mux {
-				pins = "gpio3";
+				pins = "gpio159";
 				function = "gpio";
 			};
 
 			config {
-				pins = "gpio3";
+				pins = "gpio159";
 				drive-strength = <2>;   /* 2 mA */
 				bias-pull-down;
 				input-enable;
@@ -964,12 +967,12 @@
 
 		spkr2_2_sd_n_active: spkr2_2_sd_n_active {
 			mux {
-				pins = "gpio3";
+				pins = "gpio159";
 				function = "gpio";
 			};
 
 			config {
-				pins = "gpio3";
+				pins = "gpio159";
 				drive-strength = <16>;   /* 16 mA */
 				bias-disable;
 				output-high;
@@ -2233,7 +2236,7 @@
 				pins = "gpio68", "gpio69",
 						"gpio70", "gpio71";
 				drive-strength = <6>;
-				bias-disable;
+				bias-pull-down;
 			};
 		};
 	};
