@@ -3174,6 +3174,7 @@
 #include "cape-usb.dtsi"
 #include "cape-pcie.dtsi"
 #include "msm-rdbg.dtsi"
+#include "waipio-eva.dtsi"
 #include "ipcc-test.dtsi"
 
 &qupv3_se7_2uart {
@@ -3225,3 +3226,14 @@
 		};
 	};
 };
+
+//#ifdef OPLUS_ARCH_EXTENDS
+//Add for audio
+&tert_mi2s_sd1_active {
+	config {
+		pins = "gpio124";
+		/delete-property/ bias-disable;
+		bias-pull-down;
+	};
+};
+//#endif /* OPLUS_ARCH_EXTENDS */
