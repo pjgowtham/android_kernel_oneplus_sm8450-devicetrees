@@ -52,6 +52,12 @@
 				<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_0>;
 		extcon = <&eud>;
 
+		/*
+		 * Establish dependency on smmu driver so that depopulate path of
+		 * deferred probe doesn't run into existing bug in smmu driver.
+		 */
+		dummy-supply = <&apps_smmu>;
+
 		dwc3_0: dwc3@a600000 {
 			compatible = "snps,dwc3";
 			reg = <0x0 0xa600000 0x0 0xd93c>;
