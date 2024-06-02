@@ -611,7 +611,7 @@
 	qcom,vmax-mv = <1680>;
 	qcom,cl-vmax-mv = <1680>;
 	qcom,lra-period-us = <5882>;
-	qcom,fifo-vmax-mv = <8500>;
+	qcom,fifo-vmax-mv = <7500>;
 	qcom,old-steady-vmax-mv = <8500>;
 	qcom,cal-data-restore;
 	qcom,fifo-empty-threshold = <480>;
