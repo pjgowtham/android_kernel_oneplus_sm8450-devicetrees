@@ -174,13 +174,6 @@
 };
 
 //#ifdef OPLUS_FEATURE_CHG_BASIC
-&pm8350b_haptics {
-    qcom,fifo-vmax-mv = <8700>;
-    qcom,old-steady-vmax-mv = <8700>;//8.7v
-};
-//#endif
-
-//#ifdef OPLUS_FEATURE_CHG_BASIC
 &pm8350_tz {
 	qcom,need_check_ref_byp;
 };

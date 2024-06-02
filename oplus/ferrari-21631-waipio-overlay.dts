@@ -47,10 +47,3 @@
     pinctrl-0 = <&rf_cable0_active>;
   };
 };
-//#ifdef OPLUS_FEATURE_CHG_BASIC
-&pm8350b_haptics {
-    qcom,fifo-vmax-mv = <8900>;
-    qcom,old-steady-vmax-mv = <8900>;//8.9v
-};
-//#endif
-
