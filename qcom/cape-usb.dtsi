@@ -79,6 +79,7 @@
 			snps,dis_u3_susphy_quirk;
 			snps,ssp-u3-u0-quirk;
 			tx-fifo-resize;
+			num-hc-interrupters = /bits/ 16 <3>;
 			dr_mode = "otg";
 			maximum-speed = "super-speed-plus";
 		};
