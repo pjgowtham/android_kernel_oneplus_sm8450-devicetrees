@@ -3,6 +3,7 @@
 #include "oplus_chg_21841.h"
 #include "oplus-chg-21841-fw.dtsi"
 
+//#ifdef OPLUS_FEATURE_CHG_BASIC
 &soc {
 	oplus,adsp-voocphy {
 		compatible = "oplus,adsp-voocphy";
@@ -190,6 +191,8 @@
 	qcom,normal_vfloat_over_sw_limit = <4475>;
 	qcom,warm_vfloat_over_sw_limit = <4140>;
 
+	oplus_spec,dec-vol-fv-mv = <40>;
+
 	qcom,vooc-high-temp = <520>;
 	qcom,vooc-normal-high-temp = <430>;
 	qcom,vooc-warm-allow-soc = <50>;
@@ -353,7 +356,7 @@
 	oplus,pps_bcc_min_curr = <1000>;
 	oplus,pps_bcc_exit_curr = <1000>;
 	oplus,pps_switch_soc_v2 = <95>;
-	oplus,pps_switch_power_v2 = <30>;
+	oplus,pps_switch_power_v2 = <10>;
 	oplus,pps_switch_soc_v3 = <0>;
 	oplus,pps_switch_power_v3 = <10>;
 	oplus,pps_r_default = <120 10 10 15 15 15 15>;
@@ -1122,6 +1125,7 @@
 //#endif OPLUS_FEATURE_CHG_BASIC
 
 
+//#ifdef OPLUS_FEATURE_CHG_BASIC
 &battery_charger {
 	oplus,ic_type = <OPLUS_CHG_IC_BUCK>;
 	oplus,ic_index = <0>;

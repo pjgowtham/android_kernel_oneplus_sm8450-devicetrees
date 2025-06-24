@@ -326,22 +326,26 @@
 		pinctrl-names = "cam_default", "cam_suspend";
 		pinctrl-0 = <&cam_sensor_mclk4_active
 			&cam_sensor_active_rst6
-			&cam_sensor_front_ponv_active>;
+			&cam_sensor_front_ponv_active
+			&cam_sensor_front_irq_active>;
 		pinctrl-1 = <&cam_sensor_mclk4_suspend
 			&cam_sensor_suspend_rst6
-			&cam_sensor_front_ponv_suspend>;
+			&cam_sensor_front_ponv_suspend
+			&cam_sensor_front_irq_suspend>;
 		gpios = <&tlmm 104 0>,
 			<&tlmm 108 0>,
-			<&tlmm 206 0>;
+			<&tlmm 206 0>,
+			<&tlmm 85 0>;
 		gpio-reset = <1>;
 		gpio-custom1 = <2>;
-		gpio-req-tbl-num = <0 1 2>;
-		gpio-req-tbl-flags = <1 0 0>;
+		gpio-custom2 = <3>;
+		gpio-req-tbl-num = <0 1 2 3>;
+		gpio-req-tbl-flags = <1 0 0 0>;
 		gpio-req-tbl-label = "CAMIF_MCLK4",
 					"CAM_RESET6",
-					"CAM_PONV_FRONT";
+					"CAM_PONV_FRONT",
+					"CAM_IRQ_FRONT";
 		cci-master = <1>;
-		qcom-aon-irq-gpio = <&tlmm 85 0>;
 		clocks = <&clock_camcc CAM_CC_MCLK4_CLK>;
 		clock-names = "cam_clk";
 		clock-cntl-level = "turbo";
@@ -454,6 +458,20 @@
 		};
 	};
 
+	cam_sensor_front_irq_active: cam_sensor_front_irq_active {
+		/* RESET */
+		mux {
+			pins = "gpio85";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio85";
+			bias-disable; /* No PULL */
+			drive-strength = <2>; /* 2 MA */
+		};
+	};
+
 	cam_sensor_front_ponv_suspend: cam_sensor_front_ponv_suspend {
 		/* RESET */
 		mux {
@@ -463,6 +481,21 @@
 
 		config {
 			pins = "gpio206";
+			bias-pull-down; /* PULL DOWN */
+			drive-strength = <2>; /* 2 MA */
+			output-low;
+		};
+	};
+
+	cam_sensor_front_irq_suspend: cam_sensor_front_irq_suspend {
+		/* RESET */
+		mux {
+			pins = "gpio85";
+			function = "gpio";
+		};
+
+		config {
+			pins = "gpio85";
 			bias-pull-down; /* PULL DOWN */
 			drive-strength = <2>; /* 2 MA */
 			output-low;

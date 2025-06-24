@@ -186,6 +186,9 @@
 	qcom,ffc1_normal_vfloat_over_sw_limit = <4500>;
 	qcom,ffc2_normal_vfloat_over_sw_limit = <4500>;
 
+	oplus_spec,dec-vol-fv-mv = <40>;
+
+
 	qcom,default_iterm_ma = <130>;
 	qcom,default_temp_normal_fastchg_current_ma = <1100>;
 	qcom,default_normal_vfloat_sw_limit = <4385>;

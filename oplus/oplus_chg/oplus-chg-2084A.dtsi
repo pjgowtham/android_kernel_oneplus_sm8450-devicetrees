@@ -198,6 +198,8 @@
 	qcom,default_little_cool_vfloat_over_sw_limit = <4445>;
 
 
+	oplus_spec,dec-vol-fv-mv = <40>;
+
 	qcom,pps_multistep_initial_batt_temp = <310>;
 	qcom,pps_strategy_normal_power = <6000>;//6A
 	qcom,pps-normal-to-little-cool-power = <5000>;//5A
@@ -230,6 +232,7 @@
 	qcom,sw_vfloat_over_protect_enable;
 	qcom,usbtemp_batttemp_gap = <12>;
 	qcom,fg_info_package_read_support;
+	oplus,support_check_usbin_status;
 
 	//for PD9V or QC9V
 	//qcom,vbatt_pdqc_to_5v_thr = <4100>;
