@@ -60,6 +60,8 @@
 	oplus,chg_ops = "plat-pmic";
 	qcom,smart_charging_screenoff;
 	qcom,voocphy_support = <2>;
+	oplus,full_limit_curr_support;
+
 	qcom,input_current_charger_ma = <2000>;
 	qcom,pd_input_current_charger_ma = <2000>;
 	qcom,qc_input_current_charger_ma = <2000>;
@@ -193,6 +195,11 @@
 	qcom,usbtemp_cool_down_recover_ntc_high = <60>;
 	qcom,usbtemp_cool_down_recover_gap_low = <6>;
 	qcom,usbtemp_cool_down_recover_gap_high = <15>;
+
+	oplus,poweroff_high_batt_temp = <720>;
+	oplus,poweroff_emergency_batt_temp = <770>;
+	oplus,usbtemp_batt_temp_over_hot = <60>;
+	oplus,usbtemp_temp_gap_with_batt_temp_in_over_hot = <15>;
 
 	qcom,vbatt_power_off = <3300>;
 	qcom,vbatt_soc_1 = <3310>;

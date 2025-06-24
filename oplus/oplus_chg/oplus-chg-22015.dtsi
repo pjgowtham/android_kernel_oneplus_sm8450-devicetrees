@@ -2,6 +2,7 @@
 
 #include "oplus_chg_22001.h"
 
+//#ifdef OPLUS_FEATURE_CHG_BASIC
 //endif OPLUS_FEATURE_CHG_BASIC
 &qupv3_se5_i2c {
 	status = "disabled";
