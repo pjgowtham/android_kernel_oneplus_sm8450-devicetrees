@@ -18,7 +18,7 @@
 	#size-cells = <2>;
 
 	chosen: chosen {
-		bootargs = "console=ttyMSM0,115200n8 loglevel=6 kpti=0 log_buf_len=256K kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat msm_rtb.filter=0x237 allow_mismatched_32bit_el0 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops pstore.compress=none cpufreq.default_governor=performance can.stats_timer=0 fsa4480_i2c.async_probe=1 slub_debug=- disable_dma32=on";
+		bootargs = "console=ttyMSM0,115200n8 loglevel=6 kpti=0 log_buf_len=2M kernel.panic_on_rcu_stall=1 swiotlb=noforce loop.max_part=7 cgroup.memory=nokmem,nosocket pcie_ports=compat msm_rtb.filter=0x237 allow_mismatched_32bit_el0 kasan=off rcupdate.rcu_expedited=1 rcu_nocbs=0-7 ftrace_dump_on_oops pstore.compress=none cpufreq.default_governor=performance can.stats_timer=0 fsa4480_i2c.async_probe=1 slub_debug=- disable_dma32=on";
 		stdout-path = "/soc/qcom,qup_uart@99c000:115200n8";
 	};
 
@@ -92,7 +92,6 @@
 			power-domains = <&CPU_PD1>;
 			power-domain-names = "psci";
 			qcom,freq-domain = <&cpufreq_hw 0 4>;
-			#cooling-cells = <2>;
 		};
 
 		CPU2: cpu@200 {
@@ -107,7 +106,6 @@
 			power-domains = <&CPU_PD2>;
 			power-domain-names = "psci";
 			qcom,freq-domain = <&cpufreq_hw 0 4>;
-			#cooling-cells = <2>;
 			L2_2: l2-cache {
 			      compatible = "arm,arch-cache";
 			      cache-level = <2>;
@@ -127,7 +125,6 @@
 			power-domains = <&CPU_PD3>;
 			power-domain-names = "psci";
 			qcom,freq-domain = <&cpufreq_hw 0 4>;
-			#cooling-cells = <2>;
 		};
 
 		CPU4: cpu@400 {
@@ -162,7 +159,6 @@
 			power-domains = <&CPU_PD5>;
 			power-domain-names = "psci";
 			qcom,freq-domain = <&cpufreq_hw 1 4>;
-			#cooling-cells = <2>;
 			L2_5: l2-cache {
 			      compatible = "arm,arch-cache";
 			      cache-level = <2>;
@@ -182,7 +178,6 @@
 			power-domains = <&CPU_PD6>;
 			power-domain-names = "psci";
 			qcom,freq-domain = <&cpufreq_hw 1 4>;
-			#cooling-cells = <2>;
 			L2_6: l2-cache {
 			      compatible = "arm,arch-cache";
 			      cache-level = <2>;
@@ -371,7 +366,7 @@
 		alloc-ranges = <0x0 0x00000000 0x0 0xffffffff>;
 		reusable;
 		alignment = <0x0 0x400000>;
-		size = <0x0 0x1400000>;
+		size = <0x0 0x4800000>;
 	};
 
 	non_secure_display_memory: non_secure_display_region {
@@ -550,8 +545,6 @@
 		qcom,bt-reset-gpio = <&tlmm 81 0>; /* BT_EN */
 		qcom,bt-sw-ctrl-gpio = <&tlmm 82 0>; /* SW_CTRL */
 		qcom,xo-clk-gpio = <&tlmm 204 0>; /* XO */
-		mboxes = <&qmp_aop 0>;
-		qcom,vreg_ipa="s3e";
 
 		qcom,bt-vdd-io-supply = <&S10B>;  /* IO */
 		qcom,bt-vdd-aon-supply = <&S11B>;
@@ -571,10 +564,6 @@
 		qcom,bt-vdd-rfa1-config = <1900000 2040000 0 1>;
 		qcom,bt-vdd-rfa2-config = <1350000 2024000 0 1>;
 		qcom,bt-vdd-asd-config = <2800000 2800000 0 1>;
-
-		/* This read as part of ipa */
-		qcom,vreg_ipa-supply=<&S3E>;
-		qcom,vreg_ipa-config= <2200000 2200000 0 1>;
 	};
 
 	intc: interrupt-controller@17100000 {
@@ -1125,7 +1114,6 @@
 		qcom,hyplog-enabled;
 		hyplog-address-offset = <0x410>;
 		hyplog-size-offset = <0x414>;
-		tmecrashdump-address-offset = <0x808a0000>;
 	};
 
 	qcom_qseecom: qseecom@c1700000 {
@@ -1464,6 +1452,12 @@
 			reg = <0x87>;
 			#clock-cells = <1>;
 		};
+	};
+
+	aop-msg-client {
+		compatible = "qcom,debugfs-qmp-client";
+		mboxes = <&qmp_aop 0>;
+		mbox-names = "aop";
 	};
 
 	rimps_log: qcom,rimps_log@17d09c00 {
@@ -1835,7 +1829,7 @@
 		interrupt-names = "hc_irq", "pwr_irq";
 
 		bus-width = <4>;
-		no-sdio;
+		//no-sdio;
 		no-mmc;
 		qcom,uses_level_shifter;
 		qcom,dll_lock_bist_fail_wa;
@@ -1920,8 +1914,8 @@
 		phy-names = "ufsphy";
 		#reset-cells = <1>;
 
-		qcom,prime-mask = <0x70>;
-		qcom,silver-mask = <0x0f>;
+                qcom,prime-mask = <0x70>;
+	        qcom,silver-mask = <0x0f>;
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
 		clock-names =
@@ -2024,6 +2018,7 @@
 		iommus = <&apps_smmu 0xE0 0x0>;
 		qcom,iommu-dma = "fastmap";
 		dma-coherent;
+		qcom,iommu-faults = "non-fatal";
 
 		/* Multilevel clock scaling support for higher ufs clock freq */
 		multi-level-clk-scaling-support;
@@ -2573,7 +2568,7 @@
 				qcom,intents = <0x800  5
 						0x2000 3
 						0x4400 2>;
-
+				/* Qcom case-06236027 add for qrtr wakeup-source */
 				qcom,no-wake-svc = <0x190>;
 			};
 
@@ -3073,8 +3068,6 @@
 		qcom,vdd-wlan-rfa2-config = <1350000 2040000 0 0 1>;
 		wlan-ant-switch-supply = <&L7E>;
 		qcom,wlan-ant-switch-config = <2800000 2800000 0 0 1>;
-		vdd-wlan-ipa-supply = <&S3E>;
-		qcom,vdd-wlan-ipa-config = <2200000 2200000 0 0 0>;
 
 		interconnects =
 		<&pcie_noc MASTER_PCIE_0 &pcie_noc SLAVE_ANOC_PCIE_GEM_NOC>,
