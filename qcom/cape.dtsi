@@ -1835,7 +1835,7 @@
 		interrupt-names = "hc_irq", "pwr_irq";
 
 		bus-width = <4>;
-		no-sdio;
+		//no-sdio;
 		no-mmc;
 		qcom,uses_level_shifter;
 		qcom,dll_lock_bist_fail_wa;
