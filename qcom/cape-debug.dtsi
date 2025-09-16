@@ -7,7 +7,7 @@
 
 	dump_mem: mem_dump_region {
 		compatible = "shared-dma-pool";
-		alloc-ranges = <0x0 0x00000000 0x1 0xffffffff>;
+		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
 		reusable;
 		alignment = <0x0 0x400000>;
 		size = <0 0x3000000>;
@@ -29,6 +29,7 @@
 			qcom,curr-link-list = <6>;
 			qcom,data-sink = "sram";
 			qcom,link-list = <DCC_READ 0x1780005c 1 0>,
+				<DCC_READ 0x17d80100 256 0>,
 				<DCC_READ 0x1781005c 1 0>,
 				<DCC_READ 0x1782005c 1 0>,
 				<DCC_READ 0x1783005c 1 0>,

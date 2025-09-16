@@ -96,9 +96,9 @@
 				"pcie_aggre_noc_0_axi_clk",
 				"pcie_aggre_noc_1_axi_clk", "pcie_pipe_clk_mux",
 				"pcie_pipe_clk_ext_src";
-		max-clock-frequency-hz = <0>, <0>, <0>, <19200000>, <0>, <0>,
-					<0>, <0>, <0>, <0>, <0>, <100000000>,
-					<0>, <0>, <0>;
+		max-clock-frequency-hz = <0>, <0>, <19200000>, <0>, <0>, <0>,
+					<0>, <0>, <0>, <0>, <100000000>,
+					<0>, <0>, <0>, <0>;
 
 		resets = <&clock_gcc GCC_PCIE_0_BCR>,
 			<&clock_gcc GCC_PCIE_0_PHY_BCR>;
@@ -272,6 +272,7 @@
 	};
 
 	pcie1: qcom,pcie@1c08000 {
+        status = "disabled";
 		compatible = "qcom,pci-msm";
 
 		reg = <0x01c08000 0x3000>,
@@ -374,9 +375,9 @@
 				"pcie_aggre_noc_1_axi_clk", "pcie_pipe_clk_mux",
 				"pcie_pipe_clk_ext_src", "pcie_phy_aux_clk",
 				"pcie_phy_aux_clk_mux";
-		max-clock-frequency-hz = <0>, <0>, <0>, <19200000>, <0>, <0>,
-					<0>, <0>, <0>, <0>, <0>, <100000000>,
-					<0>, <0>, <0>, <0>;
+		max-clock-frequency-hz = <0>, <0>, <19200000>, <0>, <0>, <0>,
+					<0>, <0>, <0>, <0>, <100000000>, <0>,
+					<0>, <0>, <0>, <0>, <0>, <0>;
 
 		resets = <&clock_gcc GCC_PCIE_1_BCR>,
 			<&clock_gcc GCC_PCIE_1_PHY_BCR>;
@@ -516,8 +517,6 @@
 				0x1428 0x00 0x0
 				0x0200 0x00 0x0
 				0x0244 0x03 0x0>;
-
-		status = "disabled";
 
 		pcie1_rp: pcie1_rp {
 			reg = <0 0 0 0 0>;
