@@ -277,6 +277,15 @@ parrot-dtb-$(CONFIG_ARCH_RAVELIN) += \
 parrot-overlays-dtb-$(CONFIG_ARCH_RAVELIN) += $(RAVELIN_BOARDS) $(RAVELIN_BASE_DTB) $(RAVELIN_4GB_BOARDS) $(RAVELIN_4GB_BASE_DTB)
 dtb-y += $(parrot-dtb-y)
 
+CAPE_BASE_DTB += cape.dtb
+
+CAPE_BOARDS += \
+		cape-qrd-pm8010-overlay.dtbo
+
+cape-dtb-$(CONFIG_ARCH_CAPE) += \
+	$(call add-overlays, $(CAPE_BOARDS),$(CAPE_BASE_DTB))
+dtb-y += $(cape-dtb-y)
+
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
