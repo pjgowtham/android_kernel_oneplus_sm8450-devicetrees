@@ -1437,12 +1437,13 @@
 		mbox-names = "aop";
 	};
 
-	rimps: qcom,rimps@17400000 {
+	cpucp: qcom,cpucp@17400000 {
 		#address-cells = <2>;
 		#size-cells = <2>;
-		compatible = "qcom,rimps";
+		compatible = "qcom,cpucp";
 		reg =   <0x17400000 0x10>,
 			<0x17d90000 0x2000>;
+		reg-names = "tx", "rx";
 		#mbox-cells = <1>;
 		interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
 	};
@@ -1451,7 +1452,7 @@
 		#address-cells = <1>;
 		#size-cells = <0>;
 		compatible = "arm,scmi";
-		mboxes = <&rimps 0>;
+		mboxes = <&cpucp 0>;
 		mbox-names = "tx";
 		shmem = <&cpu_scp_lpri>;
 
@@ -1466,10 +1467,10 @@
 		};
 	};
 
-	rimps_log: qcom,rimps_log@17d09c00 {
-		compatible = "qcom,rimps-log";
+	cpucp_log: qcom,cpucp_log@17d09c00 {
+		compatible = "qcom,cpucp-log";
 		reg = <0x17d09c00 0x200>, <0x17d09e00 0x200>;
-		mboxes = <&rimps 1>;
+		mboxes = <&cpucp 1>;
 	};
 
 	ipcc_mproc: qcom,ipcc@ed18000 {
