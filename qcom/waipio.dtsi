@@ -554,6 +554,12 @@
 		alignment = <0x0 0x400000>;
 	};
 
+	kinfo_mem: debug_kinfo_region {
+		alloc-ranges = <0x0 0x00000000 0xffffffff 0xffffffff>;
+		size = <0x0 0x1000>;
+		no-map;
+	};
+
 	va_md_mem: va_md_mem_region {
 		compatible = "shared-dma-pool";
 		alloc-ranges = <0x1 0x00000000 0xfffffffe 0xffffffff>;
@@ -883,6 +889,11 @@
 		compatible = "qcom,cpucp-log";
 		reg = <0x17d09c00 0x200>, <0x17d09e00 0x200>;
 		mboxes = <&cpucp 1>;
+	};
+
+	google,debug-kinfo {
+		compatible = "google,debug-kinfo";
+		memory-region = <&kinfo_mem>;
 	};
 
 	cpu_pmu: cpu-pmu {
