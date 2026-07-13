@@ -650,8 +650,10 @@
 			};
 
 			clock_rpmh: qcom,rpmhclk {
-				compatible = "qcom,waipio-rpmh-clk";
+				compatible = "qcom,sm8450-rpmh-clk";
 				#clock-cells = <1>;
+				clock-names = "xo";
+				clocks = <&xo_board>;
 			};
 
 			apps_bcm_voter: bcm_voter {
