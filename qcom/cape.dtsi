@@ -1483,7 +1483,7 @@
 	};
 
 	adsp_pas: remoteproc-adsp@03000000 {
-		compatible = "qcom,cape-adsp-pas";
+		compatible = "qcom,waipio-adsp-pas";
 		reg = <0x03000000 0x10000>;
 		status = "ok";
 
@@ -1563,7 +1563,7 @@
 	};
 
 	cdsp_pas: remoteproc-cdsp@32300000 {
-		compatible = "qcom,cape-cdsp-pas";
+		compatible = "qcom,waipio-cdsp-pas";
 		reg = <0x32300000 0x10000>;
 		status = "ok";
 
@@ -1645,7 +1645,7 @@
 	};
 
 	modem_pas: remoteproc-mss@04080000 {
-		compatible = "qcom,cape-modem-pas";
+		compatible = "qcom,waipio-modem-pas";
 		reg = <0x4080000 0x10000>;
 		status = "ok";
 
