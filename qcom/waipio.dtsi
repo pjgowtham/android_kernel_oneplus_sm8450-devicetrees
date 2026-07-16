@@ -2447,21 +2447,15 @@
 		qcom,qmp = <&aoss_qmp>;
 	};
 
-	soc-sleep-stats@c3f0000 {
-		compatible = "qcom,rpmh-sleep-stats";
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v3";
 		reg = <0xc3f0000 0x400>;
 		ss-name = "modem", "adsp", "adsp_island",
 			  "cdsp", "slpi", "slpi_island",
 			  "apss";
 		qcom,qmp = <&aoss_qmp>;
-		ddr-freq-update;
 	};
 
-	subsystem-sleep-stats {
-		compatible = "qcom,subsystem-sleep-stats";
-		reg = <0xc3f0000 0x400>;
-		ddr-freq-update;
-	};
 
 	qcom,msm-cdsp-loader {
 		compatible = "qcom,cdsp-loader";
