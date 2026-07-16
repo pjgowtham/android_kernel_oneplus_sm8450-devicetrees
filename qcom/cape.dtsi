@@ -1413,20 +1413,13 @@
 		qcom,vmid-cp-camera-preview-ro;
 	};
 
-	soc-sleep-stats@c3f0000 {
-		compatible = "qcom,rpmh-sleep-stats";
+	sram@c3f0000 {
+		compatible = "qcom,rpmh-stats-v3";
 		reg = <0xc3f0000 0x400>;
 		ss-name = "modem", "adsp", "adsp_island",
 			  "cdsp", "slpi", "slpi_island",
 			  "apss";
 		qcom,qmp = <&aoss_qmp>;
-		ddr-freq-update;
-	};
-
-	subsystem-sleep-stats@c3f0000 {
-		compatible = "qcom,subsystem-sleep-stats";
-		reg = <0xc3f0000 0x400>;
-		ddr-freq-update;
 	};
 
 	sys-pm-vx@c320000 {
