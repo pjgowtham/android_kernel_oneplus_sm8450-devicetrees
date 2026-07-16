@@ -3170,6 +3170,14 @@
 #include "msm-rdbg.dtsi"
 #include "ipcc-test.dtsi"
 
+#include "audio/waipio-audio.dtsi"
+#include "camera/cape-camera.dtsi"
+#include "display/display/cape-sde.dtsi"
+#include "eva/waipio-eva.dtsi"
+#include "mmrm/cape-mmrm.dtsi"
+#include "synx/synx/waipio-synx.dtsi"
+#include "video/waipio-vidc.dtsi"
+
 &qupv3_se7_2uart {
 	status = "ok";
 };
