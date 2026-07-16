@@ -534,7 +534,7 @@
 		qcom,bt-reset-gpio = <&tlmm 81 0>; /* BT_EN */
 		qcom,bt-sw-ctrl-gpio = <&tlmm 82 0>; /* SW_CTRL */
 		qcom,xo-clk-gpio = <&tlmm 204 0>; /* XO */
-		mboxes = <&qmp_aop 0>;
+		qcom,qmp = <&aoss_qmp>;
 		qcom,vreg_ipa="s3e";
 
 		qcom,bt-vdd-io-supply = <&S10B>;  /* IO */
@@ -1419,7 +1419,7 @@
 		ss-name = "modem", "adsp", "adsp_island",
 			  "cdsp", "slpi", "slpi_island",
 			  "apss";
-		mboxes = <&qmp_aop 0>;
+		qcom,qmp = <&aoss_qmp>;
 		ddr-freq-update;
 	};
 
@@ -1432,8 +1432,7 @@
 	sys-pm-vx@c320000 {
 		compatible = "qcom,sys-pm-violators", "qcom,sys-pm-waipio";
 		reg = <0xc320000 0x0400>;
-		mboxes = <&qmp_aop 0>;
-		mbox-names = "aop";
+		qcom,qmp = <&aoss_qmp>;
 	};
 
 	cpucp: qcom,cpucp@17400000 {
@@ -3068,7 +3067,7 @@
 		use-pm-domain;
 		cnss-enable-self-recovery;
 		qcom,same-dt-multi-dev;
-		mboxes = <&qmp_aop 0>;
+		qcom,qmp = <&aoss_qmp>;
 		qcom,vreg_ipa="s3e";
 		qcom,xo-clk-gpio = <&tlmm 204 0>;
 
