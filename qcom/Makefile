@@ -443,5 +443,7 @@ endif
 
 always-y        := $(dtb-y)
 subdir-y        := $(dts-dirs)
+ifneq ($(CONFIG_ARCH_WAIPIO), y)
 subdir-y        += audio bt camera data display dsp eSE graphics mm mmrm mm-sys nfc synx video wlan
+endif
 clean-files     := *.dtb *.dtbo
