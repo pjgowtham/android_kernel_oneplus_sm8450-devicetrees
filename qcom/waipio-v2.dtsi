@@ -172,4 +172,6 @@
 	};
 };
 
-#include "waipio-v2-gpu.dtsi"
+#include "graphics/gpu/waipio-v2-gpu.dtsi"
+
+#include "mmrm/waipio-v2-mmrm.dtsi"

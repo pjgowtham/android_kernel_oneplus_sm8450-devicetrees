@@ -4,6 +4,7 @@
 #include <dt-bindings/regulator/qcom,rpmh-regulator-levels.h>
 #include <dt-bindings/interconnect/qcom,waipio.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
+#include <dt-bindings/ipclite-signals.h>
 #include <dt-bindings/soc/qcom,rpmh-rsc.h>
 #include <dt-bindings/soc/qcom,ipcc.h>
 #include <dt-bindings/spmi/spmi.h>
@@ -3462,7 +3463,15 @@
 #include "waipio-debug.dtsi"
 #include "waipio-pcie.dtsi"
 #include "msm-rdbg.dtsi"
-#include "waipio-gpu.dtsi"
+
+#include "audio/waipio-audio.dtsi"
+#include "camera/waipio-camera.dtsi"
+#include "display/display/waipio-sde.dtsi"
+#include "eva/waipio-eva.dtsi"
+#include "mmrm/waipio-mmrm.dtsi"
+#include "synx/synx/waipio-synx.dtsi"
+#include "video/waipio-vidc.dtsi"
+#include "graphics/gpu/waipio-gpu.dtsi"
 #include "waipio-thermal.dtsi"
 
 &pcie0_rp {
