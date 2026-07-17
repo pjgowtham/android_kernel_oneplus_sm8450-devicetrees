@@ -1338,7 +1338,7 @@
 		depends-on-supply = <&ipcc_mproc>;
 
 		battery_charger: qcom,battery_charger {
-			compatible = "qcom,battery-charger";
+			compatible = "qcom,waipio-battery-charger";
 		};
 
 		ucsi: qcom,ucsi {
