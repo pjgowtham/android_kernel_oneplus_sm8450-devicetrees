@@ -1,5 +1,12 @@
 # SPDX-License-Identifier: GPL-2.0
 
+ifeq ($(CONFIG_ARCH_WAIPIO), y)
+DTC_INCLUDE += \
+	$(srctree)/../sm8450-modules/qcom/opensource/audio-kernel/include \
+	$(srctree)/../sm8450-modules/qcom/opensource/camera-kernel \
+	$(srctree)/../sm8450-modules/qcom/opensource/synx-kernel
+endif
+
 # add-overlay defines the target with following naming convention:
 # <base>-<board>-dtbs = base.dtb board.dtbo
 #
