@@ -3475,8 +3475,8 @@
 #include "waipio-thermal.dtsi"
 
 &pcie0_rp {
-	#address-cells = <5>;
-	#size-cells = <0>;
+	#address-cells = <3>;
+	#size-cells = <2>;
 
 	cnss_pci: cnss_pci {
 		reg = <0 0 0 0 0>;
