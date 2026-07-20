@@ -25,6 +25,10 @@
 		hwlocks = <&tcsr_mutex 11>;
 		#address-cells = <1>;
 		#size-cells = <1>;
+		major_version = <1>;
+		minor_version = <0>;
+		feature_mask_low = <0x0003>;
+		feature_mask_high = <0x0000>;
 		ranges;
 
 		ipclite_apss: apss {
