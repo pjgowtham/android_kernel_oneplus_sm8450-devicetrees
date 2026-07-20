@@ -50,6 +50,9 @@
 			qcom,bus-slave = <SLAVE_VENUS_CFG>;
 			qcom,bus-governor = "performance";
 			qcom,bus-range-kbps = <1000 1000>;
+			interconnect-names = "cvp-cnoc";
+			interconnects = <&gem_noc MASTER_APPSS_PROC
+					&config_noc SLAVE_VENUS_CFG>;
 		};
 
 		cvp_bus_ddr {
@@ -59,6 +62,9 @@
 			qcom,bus-slave = <SLAVE_EBI1>;
 			qcom,bus-governor = "performance";
 			qcom,bus-range-kbps = <1000 6533000>;
+			interconnect-names = "cvp-ddr";
+			interconnects = <&mmss_noc MASTER_VIDEO_PROC
+					&mc_virt SLAVE_EBI1>;
 		};
 
 		/* MMUs */
