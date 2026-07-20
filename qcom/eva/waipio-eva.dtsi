@@ -36,6 +36,11 @@
 		qcom,ipcc-reg = <0x400000 0x100000>;
 		qcom,gcc-reg = <0x110000 0x40000>;
 
+		/* UC region mapping */
+		ipclite_mappings = <0xFE500000 0x100000 0xa6f00000>;
+		/* DEVICE mapping */
+		hwmutex_mappings = <0xFFB00000 0x2000 0x1f4a000>;
+
 		pas-id = <26>;
 		memory-region = <&cvp_mem>;
 
