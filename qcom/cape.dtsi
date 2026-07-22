@@ -1708,7 +1708,7 @@
 
 	/* PIL spss node - for loading Secure Processor */
 	spss_pas: remoteproc-spss@1880000 {
-		compatible = "qcom,cape-spss-pas";
+		compatible = "qcom,waipio-spss-pas";
 		ranges;
 		reg = <0x188101c 0x4>,
 		      <0x1881024 0x4>,
