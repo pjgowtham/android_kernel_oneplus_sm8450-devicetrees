@@ -1833,8 +1833,9 @@
 		qcom,dll_lock_bist_fail_wa;
 
 		clocks = <&clock_gcc GCC_SDCC2_AHB_CLK>,
-			<&clock_gcc GCC_SDCC2_APPS_CLK>;
-		clock-names = "iface", "core";
+			<&clock_gcc GCC_SDCC2_APPS_CLK>,
+			<&clock_rpmh RPMH_CXO_CLK>;
+		clock-names = "iface", "core", "xo";
 
 		/* DLL HSR settings. Refer go/hsr - <Target> DLL settings */
 		qcom,dll-hsr-list = <0x0007442C 0x0 0x08
