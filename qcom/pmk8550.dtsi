@@ -146,7 +146,7 @@
 		};
 
 		pon_hlos@1300 {
-			compatible = "qcom,pm8998-pon";
+			compatible = "qcom,pmk8350-pon";
 			reg = <0x1300>, <0x800>;
 			reg-names = "pon_hlos", "pon_pbs";
 
