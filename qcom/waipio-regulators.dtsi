@@ -595,8 +595,9 @@
 			regulator-name = "pm8350c_l6";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
-			regulator-max-microvolt = <3008000>;
-			qcom,init-voltage = <2960000>;
+			regulator-max-microvolt = <1800000>;
+			qcom,init-voltage = <1800000>;
+//#endif /*OPLUS_FEATURE_TP_BASIC*/
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};
@@ -673,6 +674,26 @@
 		};
 	};
 
+	//#ifdef OPLUS_FEATURE_FINGERPRINT
+	rpmh-regulator-ldoc11 {
+		compatible = "qcom,rpmh-vrm-regulator";
+		qcom,resource-name = "ldoc11";
+		qcom,regulator-type = "pmic5-ldo";
+		qcom,supported-modes =
+			<RPMH_REGULATOR_MODE_LPM
+			 RPMH_REGULATOR_MODE_HPM>;
+		qcom,mode-threshold-currents = <0 10000>;
+		L11C: pm8350c_l11: regulator-pm8350c-l11 {
+			regulator-name = "pm8350c_l11";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+			regulator-min-microvolt = <2400000>;
+			regulator-max-microvolt = <3008000>;
+			qcom,init-voltage = <2504000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+		};
+	};
+	//#endif /*OPLUS_FEATURE_FINGERPRINT*/
+
 	rpmh-regulator-ldoc12 {
 		compatible = "qcom,rpmh-vrm-regulator";
 		qcom,resource-name = "ldoc12";
@@ -685,7 +706,7 @@
 			regulator-name = "pm8350c_l12";
 			qcom,set = <RPMH_REGULATOR_SET_ALL>;
 			regulator-min-microvolt = <1800000>;
-			regulator-max-microvolt = <1968000>;
+			regulator-max-microvolt = <1800000>;
 			qcom,init-voltage = <1800000>;
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
@@ -1055,4 +1076,23 @@
 			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
 		};
 	};
+
+	rpmh-regulator-ldoh4 {
+		compatible = "qcom,rpmh-vrm-regulator";
+		qcom,resource-name = "ldoh4";
+		qcom,regulator-type = "pmic5-ldo";
+		qcom,supported-modes =
+			<RPMH_REGULATOR_MODE_LPM
+			 RPMH_REGULATOR_MODE_HPM>;
+		qcom,mode-threshold-currents = <0 10000>;
+		L4H: pm8450_l4: regulator-pm8450-l4 {
+			regulator-name = "pm8450_l4";
+			qcom,set = <RPMH_REGULATOR_SET_ALL>;
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			qcom,init-voltage = <1800000>;
+			qcom,init-mode = <RPMH_REGULATOR_MODE_HPM>;
+		};
+	};
+//#endif /*OPLUS_FEATURE_TP_BASIC*/
 };

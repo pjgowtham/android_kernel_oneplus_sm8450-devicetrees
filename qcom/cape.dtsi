@@ -29,6 +29,7 @@
 	reserved_memory: reserved-memory { };
 
 	aliases: aliases {
+		i2c4 = &qupv3_se13_i2c;
 		serial0 = &qupv3_se7_2uart;
 		hsuart0 = &qupv3_se20_4uart;
 		ufshc1 = &ufshc_mem; /* Embedded UFS Slot */
