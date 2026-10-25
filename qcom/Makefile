@@ -293,6 +293,14 @@ cape-dtb-$(CONFIG_ARCH_CAPE) += \
 	$(call add-overlays, $(CAPE_BOARDS),$(CAPE_BASE_DTB))
 dtb-y += $(cape-dtb-y)
 
+WAIPIO_BASE_DTB += waipio.dtb waipiop.dtb waipio-v2.dtb waipiop-v2.dtb
+WAIPIO_BOARDS += waipio-mtp-pm8010-overlay.dtbo
+
+waipio-dtb-$(CONFIG_ARCH_WAIPIO) += \
+	$(call add-overlays, $(WAIPIO_BOARDS),$(WAIPIO_BASE_DTB))
+waipio-overlays-dtb-$(CONFIG_ARCH_WAIPIO) += $(WAIPIO_BOARDS) $(WAIPIO_BASE_DTB)
+dtb-y += $(waipio-dtb-y)
+
 endif
 
 ifeq ($(CONFIG_ARCH_PINEAPPLE), y)
