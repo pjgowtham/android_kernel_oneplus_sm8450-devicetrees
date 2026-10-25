@@ -47,6 +47,10 @@
 
 #include "waipio-sde-display-pinctrl.dtsi"
 
+#include "dsi-panel-oplus21631-samsung-1440-3216-dsc-cmd-t0.dtsi"
+#include "dsi-panel-samsung-amb670yf07-1440-3216-dsc-cmd.dtsi"
+#include "dsi-panel-samsung-amb670yf07-1440-3216-dsc-cmd-t0.dtsi"
+
 &soc {
 	dsi_panel_pwr_supply_sim: dsi_panel_pwr_supply_sim {
 		#address-cells = <1>;
@@ -1325,6 +1329,52 @@
 				07 08 02 04 00 19 0c];
 			qcom,display-topology = <2 2 1>;
 			qcom,default-topology-index = <0>;
+		};
+	};
+};
+
+&soc {
+	dsi_panel_oplus_optimization_pwr_supply: dsi_panel_oplus_optimization_pwr_supply {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		qcom,panel-supply-entry@0 {
+			reg = <0>;
+			qcom,supply-name = "vddio";
+			qcom,supply-min-voltage = <1800000>;
+			qcom,supply-max-voltage = <1800000>;
+			qcom,supply-enable-load = <200000>;
+			qcom,supply-disable-load = <80>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+
+		qcom,panel-supply-entry@1 {
+			reg = <1>;
+			qcom,supply-name = "vci";
+			qcom,supply-min-voltage = <3000000>;
+			qcom,supply-max-voltage = <3000000>;
+			qcom,supply-enable-load = <2000>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
+		};
+
+		qcom,panel-supply-entry@2 {
+			reg = <2>;
+			qcom,supply-name = "lab";
+			qcom,supply-min-voltage = <4600000>;
+			qcom,supply-max-voltage = <6000000>;
+			qcom,supply-enable-load = <0>;
+			qcom,supply-disable-load = <0>;
+		};
+
+		qcom,panel-supply-entry@3 {
+			reg = <3>;
+			qcom,supply-name = "ibb";
+			qcom,supply-min-voltage = <4600000>;
+			qcom,supply-max-voltage = <6000000>;
+			qcom,supply-enable-load = <0>;
+			qcom,supply-disable-load = <0>;
+			qcom,supply-post-on-sleep = <0>;
 		};
 	};
 };

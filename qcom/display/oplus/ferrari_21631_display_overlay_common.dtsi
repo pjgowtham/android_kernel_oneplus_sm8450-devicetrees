@@ -1,0 +1,11 @@
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_oplus21631_samsung_1440_3216_dsc_cmd_t0>;
+};
+
+&soc {
+	oplus_display_dev: oplus,dsi-display-dev {
+		oplus,dsi-panel-primary = <&dsi_oplus21631_samsung_1440_3216_dsc_cmd_t0>;
+		oplus,dsi-panel-secondary = <>;
+		oplus,dsi-panel-extended = <>;
+	};
+};
