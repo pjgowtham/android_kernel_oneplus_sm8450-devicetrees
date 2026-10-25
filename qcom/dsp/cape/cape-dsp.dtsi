@@ -2,7 +2,7 @@
 
 #include <dt-bindings/firmware/qcom,scm.h>
 
-&remoteproc_adsp_glink {
+&glink_edge {
 	qcom,fastrpc {
 		compatible = "qcom,fastrpc";
 		label = "adsp";
