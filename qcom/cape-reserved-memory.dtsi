@@ -63,7 +63,7 @@
 
 	cdsp_secure_heap_mem: cdsp_secure_heap_region@80c00000 {
 		no-map;
-		reg = <0x0 0x80c00000 0x0 0x4600000>;
+		reg = <0x0 0x80c00000 0x0 0x100000>;
 	};
 
 	video_mem: video_region@85700000 {
@@ -76,9 +76,9 @@
 		reg = <0x0 0x85e00000 0x0 0x2100000>;
 	};
 
-	slpi_mem: slpi_region@88000000 {
+	slpi_mem: slpi_region@87f00000 {
 		no-map;
-		reg = <0x0 0x88000000 0x0 0x1900000>;
+		reg = <0x0 0x87f00000 0x0 0x1a00000>;
 	};
 
 	cdsp_mem: cdsp_region@89900000 {
@@ -147,7 +147,7 @@
 
 	qheebsp_reserved_mem: qheebsp_reserved_region@e0000000 {
 		no-map;
-		reg = <0x0 0xe0000000 0x0 0x600000>;
+		reg = <0x0 0xe0000000 0x0 0>;
 	};
 
 	cpusys_vm_mem: cpusys_vm_region@e0600000 {
