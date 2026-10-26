@@ -78,29 +78,6 @@
 		};
 	};
 
-	uphall_tri_state_key_active: uphall_tri_state_key_active {
-		mux {
-			pins = "gpio71";
-			function = "gpio";
-		};
-		config {
-			pins = "gpio71";
-			drive-strength = <2>;
-			bias-pull-up;
-		};
-	};
-	downhall_tri_state_key_active: downhall_tri_state_key_active {
-		mux {
-			pins = "gpio117";
-			function = "gpio";
-		};
-		config {
-			pins = "gpio117";
-			drive-strength = <2>;
-			bias-pull-up;
-		};
-	};
-
 	gpio_wakeup: gpio_wakeup {
 		compatible = "gpio_wakeup";
 		gpio_table = <12 67 98 153 155>;
@@ -375,61 +352,6 @@
 		};
 	};
 	//#endif /* OPLUS_FEATRUE_ESIM */
-};
-
-&qupv3_se9_i2c {
-	ist8801@19 {
-		compatible = "oplus,hall-ist8801,up";
-		reg = <0x19>;
-		dhall,id = <1>;
-		vdd-supply = <&L7C>;
-		vio-supply = <&S10B>;
-		magnachip,init-interval = <200>;
-		interrupt-parent = <&tlmm>;
-		interrups = <117 0x02>;
-		dhall,irq-gpio = <&tlmm 117 0x2008>;
-		pinctrl-names = "uphall_tri_state_key_active";
-		pinctrl-0 = <&uphall_tri_state_key_active>;
-	};
-	ist8801@18 {
-		compatible = "oplus,hall-ist8801,down";
-		reg = <0x18>;
-		dhall,id = <2>;
-		vdd-supply = <&L7C>;
-		vio-supply = <&S10B>;
-		magnachip,init-interval = <200>;
-		interrupt-parent = <&tlmm>;
-		interrups = <71 0x02>;
-		dhall,irq-gpio = <&tlmm 71 0x2008>;
-		pinctrl-names = "downhall_tri_state_key_active";
-		pinctrl-0 = <&downhall_tri_state_key_active>;
-	};
-
-	magnachip@0D {
-		compatible = "oplus,hall-mxm1120,up";
-		reg = <0x0D>;
-		vdd-supply = <&L7C>;
-		vio-supply = <&S10B>;
-		magnachip,init-interval = <200>;
-		interrupt-parent = <&tlmm>;
-		interrups = <117 0x02>;
-		dhall,irq-gpio = <&tlmm 117 0x2008>;
-		pinctrl-names = "uphall_tri_state_key_active";
-		pinctrl-0 = <&uphall_tri_state_key_active>;
-	};
-	magnachip@0C {
-		compatible = "oplus,hall-mxm1120,down";
-		reg = <0x0C>;
-		vdd-supply = <&L7C>;
-		vio-supply = <&S10B>;
-		magnachip,init-interval = <200>;
-		interrupt-parent = <&tlmm>;
-		interrups = <71 0x02>;
-		dhall,irq-gpio = <&tlmm 71 0x2008>;
-		pinctrl-names = "downhall_tri_state_key_active";
-		pinctrl-0 = <&downhall_tri_state_key_active>;
-	};
-//#endif /*OPLUS_FEATURE_TP_BASIC*/
 };
 
 &L3C {
