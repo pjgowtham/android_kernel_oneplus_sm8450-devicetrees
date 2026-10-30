@@ -2120,6 +2120,8 @@
 		#reset-cells = <1>;
 
 		qcom,ice-use-hwkm;
+		qcom,prime-mask = <0x80>;
+		qcom,silver-mask = <0x0f>;
 
 		lanes-per-direction = <2>;
 		dev-ref-clk-freq = <0>; /* 19.2 MHz */
