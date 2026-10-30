@@ -183,7 +183,7 @@
 	ddr_cdev: qcom,ddr-cdev {
 		compatible = "qcom,ddr-cooling-device";
 		#cooling-cells = <2>;
-		qcom,freq-table = <&thermal_ddr_freq_table>;
+		qcom,freq-table = < 2092000 >;
 		qcom,bus-width = <4>;
 		interconnects = <&mc_virt MASTER_LLCC &mc_virt SLAVE_EBI1>;
 	};
