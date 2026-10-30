@@ -4,6 +4,6 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Waipio v2 SoC";
-	compatible = "qcom,waipio";
+	compatible = "qcom,waipio", "qcom,sm8450";
 	qcom,board-id = <0 0>;
 };

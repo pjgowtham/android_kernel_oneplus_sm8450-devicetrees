@@ -13,7 +13,7 @@
 
 / {
 	model = "Qualcomm Technologies, Inc. Waipio";
-	compatible = "qcom,waipio";
+	compatible = "qcom,waipio", "qcom,sm8450";
 	qcom,msm-id = <457 0x10000>;
 	interrupt-parent = <&intc>;
 
