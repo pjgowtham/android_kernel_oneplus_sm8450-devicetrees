@@ -491,3 +491,13 @@
 &pm8350c_torch1 {
 	qcom,ires-ua = <5000>;
 };
+
+&spmi_bus {
+	qcom,pmr735b@5 {
+		status = "disabled";
+	};
+};
+
+&pmr735b_temp_alarm {
+	status = "disabled";
+};
