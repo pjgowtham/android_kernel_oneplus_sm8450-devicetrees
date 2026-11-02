@@ -610,6 +610,7 @@ _platform_map = {
             {"name": "wly-2084A-waipio-overlay.dtbo"},
             {"name": "senna-22624-cape-overlay.dtbo"},
             {"name": "senna-22625-cape-overlay.dtbo"},
+            {"name": "udon-22803-cape-overlay.dtbo"},
         ],
     },
 }

@@ -1,0 +1,38 @@
+#include <dt-bindings/iio/qcom,spmi-adc7-pm8350b.h>
+
+#include "../display/dsi-panel-oplus22803-nt37705-1240-2772-dsc-cmd.dtsi"
+
+#include "../display/pxlw-udon/pxlw-iris7.dtsi"
+#include "../display/pxlw-udon/dsi-panel-pxlw.dtsi"
+
+&sde_dp {
+	qcom,dp-aux-switch = <&fsa4480_new>;
+};
+
+&sde_dsi {
+	qcom,dsi-default-panel = <&dsi_oplus22803_nt37705_1240_2772_dsc_cmd>;
+	io-channels = <&pmk8350_vadc PM8350B_ADC7_GPIO2_100K_PU>;
+	io-channel-names = "disp0_con_therm_adc";
+};
+
+&pmk8350_vadc {
+	disp0_con_therm_adc {
+		reg = <PM8350B_ADC7_GPIO2_100K_PU>;
+		label = "disp0_con_therm_adc";
+		qcom,pre-scaling = <1 1>;
+		qcom,ratiometric;
+		qcom,hw-settle-time = <200>;
+	};
+};
+
+&soc {
+	oplus_display_dev: oplus,dsi-display-dev {
+		oplus,dsi-panel-primary = <&dsi_oplus22803_nt37705_1240_2772_dsc_cmd>;
+		oplus,dsi-panel-secondary = <>;
+		oplus,dsi-panel-extended = <>;
+	};
+
+	oplus,comm {
+		oplus,display_panel = <&dsi_oplus22803_nt37705_1240_2772_dsc_cmd>;
+	};
+};
