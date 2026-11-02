@@ -608,6 +608,8 @@ _platform_map = {
             {"name": "ferrari-21631-waipio-overlay.dtbo"},
             {"name": "wly-20846-waipio-overlay.dtbo"},
             {"name": "wly-2084A-waipio-overlay.dtbo"},
+            {"name": "senna-22624-cape-overlay.dtbo"},
+            {"name": "senna-22625-cape-overlay.dtbo"},
         ],
     },
 }

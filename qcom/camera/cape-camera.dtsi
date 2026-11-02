@@ -2497,7 +2497,7 @@
 		compat-hw-name = "qcom,lx7",
 			"qcom,ipe0",
 			"qcom,bps";
-		num-lx7 = <1>;
+		num-icp = <1>;
 		num-ipe = <1>;
 		num-bps = <1>;
 		status = "ok";
@@ -2508,11 +2508,11 @@
 
 	cam_lx7: qcom,lx7 {
 		cell-index = <0>;
-		compatible = "qcom,cam-lx7";
+		compatible = "qcom,cam-icp_v2";
 		reg = <0xac01000 0x400>,
 			<0xac01800 0x400>,
 			<0x0ac04000 0x1000>;
-		reg-names = "lx7_csr", "lx7_cirq", "lx7_wd0";
+		reg-names = "icp_csr", "icp_cirq", "icp_wd0";
 		reg-cam-base = <0x1000 0x1800 0x4000>;
 		interrupt-names = "lx7";
 		interrupts = <GIC_SPI 463 IRQ_TYPE_EDGE_RISING>;
@@ -2541,6 +2541,7 @@
 		src-clock-name = "icp_clk_src";
 		clock-control-debugfs = "true";
 		fw_name = "CAMERA_ICP";
+		icp-version = <0x0200>;
 		ubwc-ipe-fetch-cfg = <0x707b 0x7083>;
 		ubwc-ipe-write-cfg = <0x161ef 0x1620f>;
 		ubwc-bps-fetch-cfg = <0x707b 0x7083>;
