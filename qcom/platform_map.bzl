@@ -606,6 +606,8 @@ _platform_map = {
             {"name": "cape-qrd-pm8010-overlay.dtbo"},
             {"name": "waipio-mtp-pm8010-overlay.dtbo"},
             {"name": "ferrari-21631-waipio-overlay.dtbo"},
+            {"name": "wly-20846-waipio-overlay.dtbo"},
+            {"name": "wly-2084A-waipio-overlay.dtbo"},
         ],
     },
 }

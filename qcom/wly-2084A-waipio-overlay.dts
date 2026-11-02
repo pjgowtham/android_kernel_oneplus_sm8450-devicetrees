@@ -1,0 +1,31 @@
+/dts-v1/;
+/plugin/;
+
+#include "waipio-mtp-pm8010-overlay.dts"
+
+#include <dt-bindings/oplus/hw-id.h>
+
+#include "oplus/waipio_overlay_common.dtsi"
+#include "oplus/wly_20846_overlay_common.dtsi"
+
+/ {
+    model = "Qualcomm Technologies, Inc. Waipio MTP with PM8010, wly";
+
+    oplus,project-id = <0x2084a>;
+    oplus,hw-id = <OPLUS_T0 OPLUS_EVT1 OPLUS_EVT2 OPLUS_DVT1 OPLUS_PVT1>;
+};
+
+#include "oplus/oplus_chg/oplus-chg-2084A.dtsi"
+
+#include "oplus/nfc/wly-nfc-sn100t.dtsi"
+#include "oplus/sensor/wly-oplus-sensor.dtsi"
+
+#include "audio/waipio-audio-mtp.dtsi"
+#include "audio/oplus/waipio_audio_overlay_common.dtsi"
+#include "audio/oplus/wly_20846_audio_overlay_common.dtsi"
+
+#include "camera/oplus/wly_20846_camera_overlay_common.dtsi"
+
+#include "display/display/waipio-sde-display-mtp.dtsi"
+#include "display/oplus/waipio_display_overlay_common.dtsi"
+#include "display/oplus/wly_20846_display_overlay_common.dtsi"
