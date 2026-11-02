@@ -290,7 +290,9 @@ CAPE_BOARDS += \
 		cape-qrd-pm8010-overlay.dtbo \
 		senna-22624-cape-overlay.dtbo \
 		senna-22625-cape-overlay.dtbo \
-		udon-22803-cape-overlay.dtbo
+		udon-22803-cape-overlay.dtbo \
+		ovaltine-21841-cape-overlay.dtbo \
+		ovaltine-21845-cape-overlay.dtbo
 
 cape-dtb-$(CONFIG_ARCH_CAPE) += \
 	$(call add-overlays, $(CAPE_BOARDS),$(CAPE_BASE_DTB))

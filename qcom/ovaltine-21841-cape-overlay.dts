@@ -1,0 +1,41 @@
+/dts-v1/;
+/plugin/;
+
+#include "cape-mtp-pm8010-overlay.dts"
+
+#include <dt-bindings/oplus/hw-id.h>
+
+#include "oplus/cape_overlay_common.dtsi"
+#include "oplus/tp/oplus_tp_overlay_common.dtsi"
+#include "oplus/ovaltine_21841_overlay_common.dtsi"
+
+/ {
+	model = "Qualcomm Technologies, Inc. Cape MTP, Ovaltine";
+	oplus,project-id = <21841 21842>;
+	oplus,region-id = <1 2>;
+};
+
+&pm8350b_haptics {
+    qcom,vmax-mv = <1280>;
+    qcom,cl-vmax-mv = <1400>;
+    qcom,lra-period-us = <5882>;
+    qcom,fifo-vmax-mv = <9100>;
+    qcom,old-steady-vmax-mv = <9100>;
+    qcom,cal-data-restore;
+    qcom,vibrator-type = <809>;//ela0809
+};
+
+#include "oplus/sensor/ovaltine-oplus-sensor.dtsi"
+#include "oplus/oplus_uff/oplus_uff_sm8475.dtsi"
+#include "oplus/oplus_chg/oplus-chg-21841.dtsi"
+
+#include "oplus/nfc/ovaltine-nfc-sn110t.dtsi"
+
+#include "audio/cape-audio-mtp.dtsi"
+#include "audio/oplus/cape_audio_overlay_common.dtsi"
+#include "audio/oplus/ovaltine_21841_audio_overlay_common.dtsi"
+
+#include "camera/oplus/ovaltine_21841_camera_overlay_common.dtsi"
+
+#include "display/display/cape-sde-display-mtp.dtsi"
+#include "display/oplus/ovaltine_21841_display_overlay_common.dtsi"

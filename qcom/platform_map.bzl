@@ -611,6 +611,8 @@ _platform_map = {
             {"name": "senna-22624-cape-overlay.dtbo"},
             {"name": "senna-22625-cape-overlay.dtbo"},
             {"name": "udon-22803-cape-overlay.dtbo"},
+            {"name": "ovaltine-21841-cape-overlay.dtbo"},
+            {"name": "ovaltine-21845-cape-overlay.dtbo"},
         ],
     },
 }
