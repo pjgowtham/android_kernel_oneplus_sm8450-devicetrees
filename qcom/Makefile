@@ -299,7 +299,7 @@ cape-dtb-$(CONFIG_ARCH_CAPE) += \
 cape-overlays-dtb-$(CONFIG_ARCH_CAPE) += $(CAPE_BOARDS) $(CAPE_BASE_DTB)
 dtb-y += $(cape-overlays-dtb-y)
 
-WAIPIO_BASE_DTB += waipio.dtb waipiop.dtb waipio-v2.dtb waipiop-v2.dtb
+WAIPIO_BASE_DTB += waipio-v2.dtb
 WAIPIO_BOARDS += \
 	waipio-mtp-pm8010-overlay.dtbo \
 	ferrari-21631-waipio-overlay.dtbo \
