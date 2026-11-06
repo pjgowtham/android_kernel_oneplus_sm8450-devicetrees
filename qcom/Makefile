@@ -296,7 +296,8 @@ CAPE_BOARDS += \
 
 cape-dtb-$(CONFIG_ARCH_CAPE) += \
 	$(call add-overlays, $(CAPE_BOARDS),$(CAPE_BASE_DTB))
-dtb-y += $(cape-dtb-y)
+cape-overlays-dtb-$(CONFIG_ARCH_CAPE) += $(CAPE_BOARDS) $(CAPE_BASE_DTB)
+dtb-y += $(cape-overlays-dtb-y)
 
 WAIPIO_BASE_DTB += waipio.dtb waipiop.dtb waipio-v2.dtb waipiop-v2.dtb
 WAIPIO_BOARDS += \
@@ -308,7 +309,7 @@ WAIPIO_BOARDS += \
 waipio-dtb-$(CONFIG_ARCH_WAIPIO) += \
 	$(call add-overlays, $(WAIPIO_BOARDS),$(WAIPIO_BASE_DTB))
 waipio-overlays-dtb-$(CONFIG_ARCH_WAIPIO) += $(WAIPIO_BOARDS) $(WAIPIO_BASE_DTB)
-dtb-y += $(waipio-dtb-y)
+dtb-y += $(waipio-overlays-dtb-y)
 
 endif
 
